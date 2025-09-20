@@ -8,6 +8,13 @@ final categoryproductprovider = FutureProvider<List<CategoryProduct>>((ref){
   return SellsRepository.getCategoryProduct();
 });
 
+
+final onlyproductprovider = FutureProvider<List<Product>>((ref){
+  return SellsRepository.getProductOnly();
+
+});
+
+
 final productsprovider = FutureProvider.family<List<Product>,String>((ref,categoryname){
   return SellsRepository.getProduct(categoryname: categoryname);
 
@@ -17,6 +24,11 @@ final filterproductsprovider = FutureProvider.family<List<Product>,String>((ref,
   return SellsRepository.getSingleProduct(titlename: titlename);
 
 });
+
+
+
+
+
 
 final userprovider = FutureProvider<List<UserModel>>((ref){
   return SellsRepository.getUser();

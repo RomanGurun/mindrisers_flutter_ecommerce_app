@@ -26,6 +26,18 @@ class SellsRepository{
     }
   }
 
+  static Future<List<Product>> getProductOnly()async{
+    try{
+      final response = await dio.get("https://api.escuelajs.co/api/v1/products");
+      return (response.data as List)
+          .map((e) => Product.fromMap(e as Map<String,dynamic>)).toList();
+    }catch(err){
+      print(err);
+      throw "Something went wrong";
+
+    }
+  }
+
 
   static Future<List<Product>> getProduct({required String categoryname}) async{
     try{

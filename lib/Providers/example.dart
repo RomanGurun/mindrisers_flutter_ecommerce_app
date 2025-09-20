@@ -145,6 +145,8 @@ class HomePage extends ConsumerWidget {
           },
           loading: () => const Center(child: CircularProgressIndicator(),
           ),
-        ));
+        ),
+
+    );
   }
 }

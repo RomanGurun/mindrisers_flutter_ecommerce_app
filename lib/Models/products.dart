@@ -122,6 +122,128 @@
 
 
 // products.dart
+// import 'dart:convert';
+//
+// class Product {
+//   final int id;
+//   final String title;
+//   final String slug;
+//   final int price;
+//   final String description;
+//   final Category category;
+//   final List<String> images;
+//   final DateTime creationAt;
+//   final DateTime updatedAt;
+//
+//   Product({
+//     required this.id,
+//     required this.title,
+//     required this.slug,
+//     required this.price,
+//     required this.description,
+//     required this.category,
+//     required this.images,
+//     required this.creationAt,
+//     required this.updatedAt,
+//   });
+//
+//   factory Product.fromMap(Map<String, dynamic> map) {
+//     return Product(
+//       id: map['id'] ?? 0,
+//       title: map['title'] ?? '',
+//       slug: map['slug'] ?? '',
+//       price: map['price'] ?? 0,
+//       description: map['description'] ?? '',
+//       category: Category.fromMap(map['category']),
+//       images: map['images'] != null
+//           ? List<String>.from(map['images'])
+//           : [],
+//
+//       creationAt: DateTime.parse(map['creationAt']),
+//       updatedAt: DateTime.parse(map['updatedAt']),
+//     );
+//   }
+//
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'id': id,
+//       'title': title,
+//       'slug': slug,
+//       'price': price,
+//       'description': description,
+//       'category': category.toMap(),
+//       'images': images,
+//       'creationAt': creationAt.toIso8601String(),
+//       'updatedAt': updatedAt.toIso8601String(),
+//     };
+//   }
+//
+//   factory Product.fromJson(String source) =>
+//       Product.fromMap(json.decode(source));
+//
+//   String toJson() => json.encode(toMap());
+//
+//   @override
+//   String toString() => 'Product(id: $id, title: $title, price: $price)';
+// }
+//
+// class Category {
+//   final int id;
+//   final String name;
+//   final String slug;
+//   final List<String> image;
+//   final DateTime creationAt;
+//   final DateTime updatedAt;
+//
+//   Category({
+//     required this.id,
+//     required this.name,
+//     required this.slug,
+//     required this.image,
+//     required this.creationAt,
+//     required this.updatedAt,
+//   });
+//
+//   factory Category.fromMap(Map<String, dynamic> map) {
+//     return Category(
+//       id: map['id'] ?? 0,
+//       name: map['name'] ?? '',
+//       slug: map['slug'] ?? '',
+//       image: map['image'] ?? '',
+//       creationAt: DateTime.parse(map['creationAt']),
+//       updatedAt: DateTime.parse(map['updatedAt']),
+//     );
+//   }
+//
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'id': id,
+//       'name': name,
+//       'slug': slug,
+//       'image': image,
+//       'creationAt': creationAt.toIso8601String(),
+//       'updatedAt': updatedAt.toIso8601String(),
+//     };
+//   }
+//
+//   @override
+//   String toString() => 'Category(id: $id, name: $name)';
+// }
+//
+// // Helper function to parse a JSON array of products
+// List<Product> productsFromJsonArray(String jsonArray) {
+//   final List<dynamic> decoded = json.decode(jsonArray);
+//   return decoded.map((e) => Product.fromMap(e)).toList();
+// }
+
+// Example usage:
+// final jsonString = '[{...}, {...}]';
+// final products = productsFromJsonArray(jsonString);
+// print(products[0].title);
+
+
+
+// =================final products.dart ========================
 import 'dart:convert';
 
 class Product {
@@ -148,22 +270,26 @@ class Product {
   });
 
   factory Product.fromMap(Map<String, dynamic> map) {
+    // Normalize images (can be String or List)
+    List<String> imagesList = [];
+    if (map['images'] is String) {
+      imagesList = [map['images']];
+    } else if (map['images'] is List) {
+      imagesList = List<String>.from(map['images'].map((e) => e.toString()));
+    }
+
     return Product(
       id: map['id'] ?? 0,
       title: map['title'] ?? '',
       slug: map['slug'] ?? '',
-      price: map['price'] ?? 0,
+      price: (map['price'] is int)
+          ? map['price']
+          : int.tryParse(map['price'].toString()) ?? 0,
       description: map['description'] ?? '',
-      category: Category.fromMap(map['category']),
-      images: map['images'] != null
-          ? (map['images'] is List
-          ? List<String>.from(
-          map['images'].map((img) => img is String ? img : img['url']))
-          : [map['images'].toString()])
-          : [],
-
-      creationAt: DateTime.parse(map['creationAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      category: Category.fromMap(map['category'] ?? {}),
+      images: imagesList,
+      creationAt: DateTime.tryParse(map['creationAt'] ?? '') ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(map['updatedAt'] ?? '') ?? DateTime.now(),
     );
   }
 
@@ -194,7 +320,7 @@ class Category {
   final int id;
   final String name;
   final String slug;
-  final String image;
+  final String image; // FIXED: was List<String>
   final DateTime creationAt;
   final DateTime updatedAt;
 
@@ -213,8 +339,8 @@ class Category {
       name: map['name'] ?? '',
       slug: map['slug'] ?? '',
       image: map['image'] ?? '',
-      creationAt: DateTime.parse(map['creationAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      creationAt: DateTime.tryParse(map['creationAt'] ?? '') ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(map['updatedAt'] ?? '') ?? DateTime.now(),
     );
   }
 
@@ -233,13 +359,8 @@ class Category {
   String toString() => 'Category(id: $id, name: $name)';
 }
 
-// Helper function to parse a JSON array of products
+// Helper to parse a JSON array of products
 List<Product> productsFromJsonArray(String jsonArray) {
   final List<dynamic> decoded = json.decode(jsonArray);
   return decoded.map((e) => Product.fromMap(e)).toList();
 }
-
-// Example usage:
-// final jsonString = '[{...}, {...}]';
-// final products = productsFromJsonArray(jsonString);
-// print(products[0].title);
