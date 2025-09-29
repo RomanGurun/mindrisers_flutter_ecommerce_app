@@ -6,6 +6,7 @@ import 'package:flutterecommerceapp/Wigdets/curated_items.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutterecommerceapp/Wigdets/banner.dart';
 import 'package:riverpod/src/framework.dart';
+import '../Feature/CartProvider/cart_order_count.dart';
 import '../Models/category_model.dart';
 import '../Models/model.dart';
 import 'package:flutterecommerceapp/Views/items_detail_screen.dart';
@@ -93,6 +94,11 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
                       )
                     ],),
                 ),
+
+                const CartOrderCount(),
+
+
+
                 SizedBox(height: 20,),
                 MyBanner(),
                 Padding(
