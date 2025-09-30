@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterecommerceapp/Feature/CartProvider/favorite_screen.dart';
 import 'package:flutterecommerceapp/Feature/User/Screen/home_screen.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutterecommerceapp/Views/app_home_screen.dart';
@@ -19,7 +20,8 @@ class _AppMainScreenState extends ConsumerState<AppMainScreen>{
     const AppHomeScreen(),
     // const AppHomeScreen(),
 
-    const Scaffold(),
+    FavoriteScreen(),
+
     const HomeScreen(),
     const Scaffold(),
 

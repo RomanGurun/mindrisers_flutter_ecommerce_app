@@ -59,6 +59,9 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
                       Image.asset(""
                           "assets/logo.webp",
                         height: 40,),
+
+                      const CartOrderCount(),
+
                       Stack(
                         clipBehavior: Clip.none,
                         children: [
@@ -95,7 +98,6 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
                     ],),
                 ),
 
-                const CartOrderCount(),
 
 
 
@@ -224,7 +226,19 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
                   padding: const EdgeInsets.only(bottom: 20),
                   child: SizedBox(
                     height: size.height * 0.35, // fixed height for horizontal list
-                    child: CuratedItems(size: size),
+                    child: onlyproduct.when(
+                      data: (products) => ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: products.length,
+                        itemBuilder: (context, index) {
+                          final product = products[index];
+                          return CuratedItems(size: size, product: product);
+                        },
+                      ),
+                      error: (e, st) => Text("Error: $e"),
+                      loading: () => const Center(child: CircularProgressIndicator()),
+                    ),
+
                   ),
                 ),
 

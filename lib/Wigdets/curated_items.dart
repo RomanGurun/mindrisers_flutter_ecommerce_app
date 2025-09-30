@@ -1,19 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterecommerceapp/Feature/CartProvider/favorite_provider.dart';
 import 'package:flutterecommerceapp/Views/Colors.dart';
 
 import '../Models/model.dart';
 import '../Models/products.dart';
 import '../Providers/category_providers.dart';
 import '../Views/items_detail_screen.dart';
+import '../Feature/CartProvider/favorite_provider.dart';
 class CuratedItems extends ConsumerStatefulWidget{
 
   // final String title;
   final Size size;
+// final DocumentSnapshot<Object?> eCommerceItems;
+final Product product;
 
-
-  const CuratedItems( {super.key,
+  const CuratedItems( {super.key,required
+  this.product,
   required this.size
   });
 
@@ -25,6 +30,8 @@ class _CuratedScreenState extends ConsumerState<CuratedItems> {
 
   @override
   Widget build(BuildContext context) {
+ final Provider = ref.watch(favoriteProvider);
+
 
     final onlyproduct = ref.watch(onlyproductprovider);
 
@@ -38,6 +45,8 @@ class _CuratedScreenState extends ConsumerState<CuratedItems> {
         child:ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: products.length,
+          shrinkWrap: true, // important
+          physics: ClampingScrollPhysics(), // optional
           itemBuilder: (context, index) {
             final product = products[index];
 
@@ -86,14 +95,22 @@ class _CuratedScreenState extends ConsumerState<CuratedItems> {
 
                       height: widget.size.height *0.25,
                       width:  widget.size.width*0.5,
-                      child: const Padding(padding: EdgeInsets.all(12),
+                      child: Padding(padding: const EdgeInsets.all(12),
 
                         child: Align(
                             alignment: Alignment.topRight,
                             child:CircleAvatar(
                               radius: 18,
                               backgroundColor: Colors.black26,
-                              child: Icon(Icons.favorite_border),
+                              child: GestureDetector(
+                                  onTap: (){
+                                    // here i have pass a product model instaed of a documentsnaphsot
+                                    // ecommerceItems
+
+                                    ref.read(favoriteProvider).toggleFavorite(widget.product as DocumentSnapshot<Object?>);
+                                  },
+                                  child: const Icon(Icons.favorite_border),
+                              ),
                             )
                         ),
 
@@ -229,7 +246,12 @@ class _CuratedScreenState extends ConsumerState<CuratedItems> {
 
     );
 
+
+
+
+
 }
+
 }
 
 
