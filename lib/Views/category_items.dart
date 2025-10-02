@@ -64,121 +64,126 @@ return productprovider.when(
                    Expanded(
                      child: SizedBox(
                      height: 45,
-                     child: TextField(
-                       decoration: InputDecoration(
-                         contentPadding: const EdgeInsets.all(5),
-
-                         hintText: "$widget.category's Fashion",
-                         hintStyle: const TextStyle(color:Colors.black38),
-                         filled: true,
-                         fillColor: fbackgroundColor2,
-                         focusedBorder: const OutlineInputBorder(borderSide: BorderSide.none),
-                         prefixIcon: const Icon(
-                           Iconsax.search_normal,
-                           color: Colors.black38,
+                     child: Padding(
+                       padding: const EdgeInsets.all(2.0), // padding around the Text
+                       child: Container(
+                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6), // inner padding inside the container
+                         decoration: BoxDecoration(
+                           color: Colors.grey.shade200, // background color
+                           borderRadius: BorderRadius.circular(8), // rounded corners
                          ),
-
-                         border:OutlineInputBorder(borderSide: BorderSide.none),
-
-
+                         child: Text(
+                           "${widget.categoryy}",
+                           style: const TextStyle(
+                             fontSize: 16,
+                             fontWeight: FontWeight.w500,
+                             color: Colors.black87,
+                           ),
+                         ),
                        ),
-                     ),
-                   ),),
+                     )
+
+                     ),),
                  ]
              )
 
 
          ),
          SizedBox(height: 20,),
-         Padding(padding:
-         EdgeInsets.symmetric(horizontal: 20),
-           child: SingleChildScrollView(
-             scrollDirection: Axis.horizontal,
-             child:Row(
-               children:
-               //  =====   filterCategory is defined under a category_model.dart file =====
 
 
-               List.generate(categoryproduct.length,
-                       (index)=> Padding(
-                     padding: const EdgeInsets.only(right:5),
-                     child: Container(
-                       padding: EdgeInsets.all(
-                           5
-                       ),
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(8),
-                         border: Border.all(color:Colors.black12),
+         // Padding(padding:
+         // EdgeInsets.symmetric(horizontal: 20),
+         //   child: SingleChildScrollView(
+         //     scrollDirection: Axis.horizontal,
+         //     child:Row(
+         //       children:
+         //       //  =====   filterCategory is defined under a category_model.dart file =====
+         //
+         //
+         //       List.generate(categoryproduct.length,
+         //               (index)=> Padding(
+         //             padding: const EdgeInsets.only(right:5),
+         //             child: Container(
+         //               padding: EdgeInsets.all(
+         //                   5
+         //               ),
+         //               decoration: BoxDecoration(
+         //                 borderRadius: BorderRadius.circular(8),
+         //                 border: Border.all(color:Colors.black12),
+         //
+         //               ),
+         //               child: Row(
+         //                 children: [
+         //                   // Text(filterCategory[index]),
+         //                   const SizedBox(width: 5,),
+         //                   index == 0
+         //                       ? const Icon(Icons.filter_list,
+         //                     size: 15,
+         //                   )
+         //                       : const Icon(
+         //                     Icons.keyboard_arrow_down,
+         //                     size: 15,
+         //                   ),
+         //
+         //                 ],
+         //               ),
+         //
+         //             ),
+         //
+         //
+         //           )
+         //       ),
+         //     ),
+         //   ),
+         // ),
 
-                       ),
-                       child: Row(
-                         children: [
-                           // Text(filterCategory[index]),
-                           const SizedBox(width: 5,),
-                           index == 0
-                               ? const Icon(Icons.filter_list,
-                             size: 15,
-                           )
-                               : const Icon(
-                             Icons.keyboard_arrow_down,
-                             size: 15,
-                           ),
-
-                         ],
-                       ),
-
-                     ),
 
 
-                   )
-               ),
-             ),
-           ),
-         ),
          SizedBox(height: 20,),
          // for Category
-         SingleChildScrollView(
-           scrollDirection: Axis.horizontal,
-           child: Row(
-             children: List.generate(categoryproduct.length,(index)=>
-                 InkWell(
-                   onTap: (){
-
-
-                   },
-
-                   child: Column(
-                     children: [
-                       Container(
-                         padding:const EdgeInsets.symmetric(horizontal: 16),
-                         child: Container(
-                           height: 50,
-                           width: 50,
-                           decoration: BoxDecoration(
-                             color: fbackgroundColor1,
-                             shape: BoxShape.circle,
-                             image: DecorationImage(image:
-                             NetworkImage(categoryproduct[index].images.isNotEmpty ?
-                                 categoryproduct[index].images[0]
-                                 : 'https://via.placeholder.com/150'
-                             ),
-                               fit: BoxFit.cover,
-                             ),
-
-                           ),
-                         ),
-                       ),
-                       const SizedBox(height: 10,),
-                       Text(categoryproduct[index].title),
-                     ],
-                   ),
-
-
-                 ),
-
-             ),
-           ),
-         ),
+         // SingleChildScrollView(
+         //   scrollDirection: Axis.horizontal,
+         //   child: Row(
+         //     children: List.generate(categoryproduct.length,(index)=>
+         //         InkWell(
+         //           onTap: (){
+         //
+         //
+         //           },
+         //
+         //           child: Column(
+         //             children: [
+         //               Container(
+         //                 padding:const EdgeInsets.symmetric(horizontal: 16),
+         //                 child: Container(
+         //                   height: 50,
+         //                   width: 50,
+         //                   decoration: BoxDecoration(
+         //                     color: fbackgroundColor1,
+         //                     shape: BoxShape.circle,
+         //                     image: DecorationImage(image:
+         //                     NetworkImage(categoryproduct[index].images.isNotEmpty ?
+         //                         categoryproduct[index].images[0]
+         //                         : 'https://via.placeholder.com/150'
+         //                     ),
+         //                       fit: BoxFit.cover,
+         //                     ),
+         //
+         //                   ),
+         //                 ),
+         //               ),
+         //               const SizedBox(height: 10,),
+         //               Text(categoryproduct[index].title),
+         //             ],
+         //           ),
+         //
+         //
+         //         ),
+         //
+         //     ),
+         //   ),
+         // ),
          SizedBox(height: 20,),
          Expanded(
              child: categoryproduct.isEmpty ? Center(

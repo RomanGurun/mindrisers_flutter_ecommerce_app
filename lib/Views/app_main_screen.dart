@@ -5,6 +5,9 @@ import 'package:flutterecommerceapp/Feature/User/Screen/home_screen.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutterecommerceapp/Views/app_home_screen.dart';
 
+import '../Feature/CartProvider/cart_order_count.dart';
+import '../Feature/CartProvider/cart_screen.dart';
+
 class AppMainScreen extends ConsumerStatefulWidget{
 
   const AppMainScreen({super.key});
@@ -18,12 +21,10 @@ class _AppMainScreenState extends ConsumerState<AppMainScreen>{
   int selecetedIndex =0;
   final List pages = [
     const AppHomeScreen(),
-    // const AppHomeScreen(),
 
-    FavoriteScreen(),
+    const CartScreen(),
 
     const HomeScreen(),
-    const Scaffold(),
 
 
 
@@ -49,9 +50,8 @@ selecetedIndex = value;
         backgroundColor: Colors.white,
         items:const [
           BottomNavigationBarItem(icon: Icon(Iconsax.home),label :"Home"),
-          BottomNavigationBarItem(icon: Icon(Iconsax.search_normal),label :"Search"),
-       BottomNavigationBarItem(icon: Icon(Iconsax.notification),label:"Notification"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline),label:"Notification"),
+          BottomNavigationBarItem(icon: Icon(Iconsax.shopping_cart),label :"Cart"),
+       BottomNavigationBarItem(icon: Icon(Icons.person_outline),label:"Account"),
 
         ],
       ),

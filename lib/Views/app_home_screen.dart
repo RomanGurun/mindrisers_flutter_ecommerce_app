@@ -34,7 +34,7 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
     Size size = MediaQuery.of(context).size;
     final productState = ref.watch(categoryproductprovider);
 
-          final onlyproduct = ref.watch(onlyproductprovider);
+    final onlyproduct = ref.watch(onlyproductprovider);
 
 
     return Scaffold(
@@ -155,8 +155,8 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
                           Navigator.push(context, MaterialPageRoute(
                               builder: (_) =>
                                   CategoryItems(
-                                      categoryy: cat.slug,
-                                      )
+                                    categoryy: cat.slug,
+                                  )
                           ),
                           );
                         },
@@ -314,3 +314,9 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
 
   }
 }
+
+
+
+
+
+// ======================== new home screen=====================
