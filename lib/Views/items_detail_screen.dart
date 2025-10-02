@@ -566,9 +566,11 @@ class _ItemDetailScreenState extends ConsumerState<ItemsDetailScreen> {
                       onTap: () {
                         final productId = product.id.toString();
                         final productData = {
-                          "title": product.title,
+                          "name": product.title,  // ✅ match CartItems
+                          "image": product.images.isNotEmpty ? product.images[0] : "https://via.placeholder.com/150", // ✅ add image
                           "price": product.price,
-                          "description": product.description,
+                          "discountPercentage": 0, // ✅ set default if no discount
+                          "description": product.description
                         };
 
                         cp.addCart(
@@ -611,8 +613,13 @@ class _ItemDetailScreenState extends ConsumerState<ItemsDetailScreen> {
                         // Pass the current product to the dialog
                         _showOrderConfirmationDialog(context, cp, {
                           'id': product.id,
+                          'name': product.title, // ✅ match CartItems & Orders
                           'title': product.title,
+                          'image': product.images.isNotEmpty
+                              ? product.images[0]
+                              : "https://via.placeholder.com/150",
                           'price': product.price,
+                          'discountPercentage': 0, // or real discount if available
                           'description': product.description,
                         });
 
@@ -683,13 +690,17 @@ class _ItemDetailScreenState extends ConsumerState<ItemsDetailScreen> {
 }
 void _showOrderConfirmationDialog(
     BuildContext context, CartProvider cp, Map<String, dynamic> product) {
+
+  const deliveryCharge = 4.99; //  define once
+
   showDialog(
     context: context,
     builder: (context) {
       final productId = product['id'] ?? product['productId'] ?? '';
-      final title = product['title'] ?? 'Unknown';
+      final title = product['name'] ??  product['title'] ?? 'Unknown';
       final price = product['price'] ?? 0.0;
       final description = product['description'] ?? '';
+      final total = price + deliveryCharge;
 
       return AlertDialog(
         title: const Text("Confirm Your Order"),
@@ -699,7 +710,7 @@ void _showOrderConfirmationDialog(
             children: [
               Text("$title × 1"),
               const SizedBox(height: 10),
-              Text("Total Payable: \$${price.toStringAsFixed(2)}"),
+              Text("Total Payable: \$${total.toStringAsFixed(2) }"),
             ],
           ),
         ),
@@ -715,6 +726,8 @@ void _showOrderConfirmationDialog(
                 final userId = FirebaseAuth.instance.currentUser?.uid;
 
                 if (userId == null) throw "User not logged in";
+                const deliveryCharge = 4.99; // ✅ fixed delivery charge
+                final total = price + deliveryCharge;
 
                 // Save the single product order to Firestore
                 await firestore.collection("orders").add({
@@ -723,14 +736,18 @@ void _showOrderConfirmationDialog(
                     {
                       "productId": productId,
                       "productData": {
-                        "title": title,
+                        "name": title,
+                        "image": product['image'] ?? "https://via.placeholder.com/150",
                         "price": price,
+                        "discountPercentage": 0,
                         "description": description,
+
                       },
                       "quantity": 1,
                     }
                   ],
-                  "total": price,
+                  "deliveryCharge":deliveryCharge, ///added delivery charge
+                  "total": total,
                   "createdAt": FieldValue.serverTimestamp(),
                 });
 
@@ -738,8 +755,8 @@ void _showOrderConfirmationDialog(
 
                 // Show success message
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text("Order placed successfully! 🎉")),
+                   SnackBar(
+                      content: Text("Order placed successfully! 🎉  (Incl. \$${deliveryCharge.toStringAsFixed(2)} delivery")),
                 );
 
                 // Navigate to OrdersScreen
