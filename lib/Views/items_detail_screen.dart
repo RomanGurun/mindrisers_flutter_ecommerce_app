@@ -8,7 +8,6 @@ import 'package:flutterecommerceapp/Views/Colors.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:riverpod/src/framework.dart';
 import '../Feature/CartProvider/cart_order_count.dart';
-import '../Feature/CartProvider/favorite_provider.dart';
 import '../Feature/CartProvider/orders_screen.dart';
 import '../Models/model.dart';
 
@@ -32,17 +31,6 @@ class _ItemDetailScreenState extends ConsumerState<ItemsDetailScreen> {
     CartProvider cp = ref.watch(cartService);
     final itemdetail = ref.watch(filterproductsprovider(widget.title));
     // Provider provider = ref.watch(favoriteProvider as ProviderListenable<Provider>);
-    final favorite = ref.watch(favoriteProvider);
-    final favoriteNotifier = ref.read(favoriteProvider.notifier);
-
-
-    // final finalPrice = num.parse(
-    //   (widget.productItems['price'] *
-    //           (1 - widget.productItems['discountPercentage'] / 100))
-    //       .toStringAsFixed(2),
-    // );
-
-
 
 
 
@@ -70,32 +58,6 @@ class _ItemDetailScreenState extends ConsumerState<ItemsDetailScreen> {
             actions: [
               CartOrderCount(),
 
-              // Stack(
-              //   clipBehavior: Clip.none,
-              //   children: [
-              //     Icon(Iconsax.shopping_bag, size: 28),
-              //     Positioned(
-              //       right: -3,
-              //       top: -5,
-              //       child: Container(
-              //         padding: EdgeInsets.all(4),
-              //         decoration: BoxDecoration(
-              //           color: Colors.red,
-              //           shape: BoxShape.circle,
-              //         ),
-              //         child: Center(
-              //           child: Text(
-              //             "3",
-              //             style: TextStyle(
-              //               color: Colors.white,
-              //               fontWeight: FontWeight.bold,
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
 
               SizedBox(width: 20),
             ],
@@ -181,37 +143,10 @@ class _ItemDetailScreenState extends ConsumerState<ItemsDetailScreen> {
                         // ),
                         Spacer(),
 
-                        Icon(Icons.favorite_border),
                       ],
                     ),
 
-                    //
-                    // SizedBox(
-                    //   width: widget.size.width * 0.5,
-                    //   child :Text( widget.eCommerceItems.name,
-                    //   maxLines: 1,
-                    //   overflow: TextOverflow.ellipsis,
-                    //   style: TextStyle(
-                    //     fontWeight: FontWeight.w600,
-                    //     fontSize: 16,
-                    //     height:1.5,
-                    //   ),
-                    //   ),
-                    // ),
-                    //             Row(
-                    //               children: [
-                    //                 Text("\$ ${widget.eCommerceItems.price.toString()}.00",
-                    //                 style: TextStyle(fontWeight:FontWeight.w600,
-                    //                 fontSize: 18,
-                    //                   height: 1.5
-                    //                 ),
-                    //                 ),
-                    //
-                    // SizedBox(width: 5,
-                    // ),
-                    //
-                    //               ],
-                    //             ),
+
                     Text(
                       product.title,
                       maxLines: 1,
@@ -270,280 +205,12 @@ class _ItemDetailScreenState extends ConsumerState<ItemsDetailScreen> {
                         letterSpacing: -.5,
                       ),
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: size.width / 2.1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              //   for color
-                              Text(
-                                "Color",
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              // SingleChildScrollView(
-                              //   scrollDirection: Axis.horizontal,
-                              //   child: Row(
-                              //     children:widget.eCommerceApp.fcolor.
-                              //     asMap().entries
-                              //         .map((entry){
-                              //       final int index = entry.key;
-                              //       final color = entry.value;
-                              //
-                              //       return Padding(
-                              //         padding: EdgeInsets.only(
-                              //             top:10
-                              //             ,right:10)
-                              //         ,
-                              //         child: CircleAvatar(
-                              //           radius: 18,
-                              //           backgroundColor: color,
-                              //           child: InkWell(
-                              //             onTap: (){
-                              //               setState(() {
-                              //                 selectedColorIndex = index;
-                              //
-                              //               });
-                              //             },
-                              //
-                              //             child: Icon(Icons.check,
-                              //               color: selectedColorIndex == index ?
-                              //               Colors.white :
-                              //               Colors.transparent,),
-                              //           ),
-                              //
-                              //
-                              //         ),
-                              //
-                              //
-                              //       );
-                              //
-                              //     }).toList(),
-                              //   ),
-                              // )
-                            ],
-                          ),
-                        ),
 
-                        //     for Size
-
-                        // SizedBox(
-                        //   width: size.width /2.4,
-                        //   child: Column(
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     children: [
-                        //       //   for color
-                        //       Text("Size",
-                        //         style: TextStyle(
-                        //           color: Colors.black54,
-                        //           fontWeight: FontWeight.w500,
-                        //
-                        //
-                        //         ),
-                        //       ),
-                        //       SingleChildScrollView(
-                        //         scrollDirection: Axis.horizontal,
-                        //         child: Row(
-                        //           children:widget.eCommerceApp.size.
-                        //           asMap().entries
-                        //               .map((entry){
-                        //             final int index = entry.key;
-                        //             final String size = entry.value;
-                        //
-                        //             return GestureDetector(
-                        //               onTap: (){
-                        //                 setState(() {
-                        //                   selectedSizeIndex = index;
-                        //
-                        //                 });
-                        //               },
-                        //
-                        //
-                        //               child: Container(
-                        //                 margin: EdgeInsets.only(right: 10,top:10),
-                        //                 height: 35,
-                        //                 width: 35,
-                        //                 decoration: BoxDecoration(
-                        //                   shape: BoxShape.circle,
-                        //                   color: selectedSizeIndex == index
-                        //                       ? Colors.black :
-                        //                   Colors.white,
-                        //                   border:Border.all(
-                        //                     color: selectedSizeIndex == index
-                        //                         ? Colors.black :
-                        //                     Colors.black12,
-                        //                   ),
-                        //
-                        //                 ),
-                        //                 child:  Center(
-                        //                   child:  Text(
-                        //                     size,
-                        //                     style:  TextStyle(
-                        //                       fontWeight: FontWeight.bold,
-                        //                       color : selectedSizeIndex == index
-                        //                           ? Colors.white :
-                        //                       Colors.black,
-                        //
-                        //                     ),
-                        //
-                        //
-                        //                   ),
-                        //                 ),
-                        //
-                        //
-                        //
-                        //               ),
-                        //             );
-                        //
-                        //           }).toList(),
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                      ],
-                    ),
                   ],
                 ),
               ),
             ],
           ),
-
-
-          //  ================= Old floating actionbutton============================
-
-          //       floatingActionButtonLocation:
-    //           FloatingActionButtonLocation.centerDocked,
-    //       floatingActionButton: FloatingActionButton.extended(
-    //         onPressed: () {},
-    //         backgroundColor: Colors.white,
-    //         elevation: 0,
-    //
-    //         label: SizedBox(
-    //           width: size.width * 0.9,
-    //
-    //           child: Row(
-    //             children: [
-    //
-    //
-    //
-    //
-    //
-    //                  Expanded(
-    //                   child: Container(
-    //                     padding: EdgeInsets.symmetric(vertical: 15),
-    //                     decoration: BoxDecoration(
-    //                       border: Border.all(color: Colors.black),
-    //                     ),
-    //
-    //                     child: GestureDetector(
-    // onTap: () {
-    //   // final productId = widget.productItems.id; //to get doc id
-    //   // final productData =
-    //   // widget.productItems.data() as Map<String, dynamic>;
-    //   //get product data as a to get currrently selected color ans size
-    //
-    //   // final selectedColor =
-    //   // widget.productItems['fcolor'][selectedColorIndex];
-    //   // final selectedSize =
-    //   // widget.productItems['fsize'][selectedColorIndex];
-    //   // // call the service function
-    //
-    //
-    //
-    //   final productId = product.id;
-    //   final productData = {
-    //     "title": product.title,
-    //     "price": product.price,
-    //     "description": product.description,
-    //     // add any other fields you need here
-    //   };
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //   cp.addCart(
-    //     productId as String,
-    //     productData
-    //
-    //   );
-    //
-    //   //   notify to user
-    //   showSnackBar(
-    //       context, "${productData['title']} added to cart!"
-    //   );
-    // },
-    //
-    // child: Row(
-    //                         mainAxisAlignment: MainAxisAlignment.center,
-    //                         children: [
-    //                           Icon(Iconsax.shopping_bag, color: Colors.black),
-    //                           SizedBox(width: 5),
-    //                           Text(
-    //                             "ADD TO CART",
-    //                             style: TextStyle(
-    //                               color: Colors.black,
-    //                               letterSpacing: -1,
-    //                             ),
-    //                           ),
-    //                         ],
-    //                       ),
-    //                     ),
-    //
-    //                   ),
-    //                 ),
-    //                     ],
-    //
-    //               ),
-    //               SizedBox(width: 10),
-    //
-    //               Expanded(
-    //                 child: Container(
-    //                   padding: EdgeInsets.symmetric(vertical: 18),
-    //                   color: Colors.black,
-    //                   child: Row(
-    //                     mainAxisAlignment: MainAxisAlignment.center,
-    //                     children: [
-    //                       Icon(Iconsax.shopping_bag, color: Colors.black),
-    //                       SizedBox(width: 5),
-    //                       Text(
-    //                         "BUY NOW",
-    //                         style: TextStyle(
-    //                           color: Colors.white,
-    //                           letterSpacing: -1,
-    //                         ),
-    //                       ),
-    //                     ],
-    //                   ),
-    //
-    //                   // child: Center(
-    //                   //   child: Text(
-    //                   //     "BUY NOW",
-    //                   //     style: TextStyle(
-    //                   //       color: Colors.white,
-    //                   //       letterSpacing: -1,
-    //                   //
-    //                   //     ),
-    //                   //   ),
-    //                   // )
-    //                 ),
-    //               ),
-    //                   // ],
-    //           ),
-    //         ),
-
-
-          //  ================= Old floating actionbutton============================
 
 
 

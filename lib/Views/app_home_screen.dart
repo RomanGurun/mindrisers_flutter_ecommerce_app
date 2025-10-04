@@ -242,58 +242,6 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
                   ),
                 ),
 
-                // SingleChildScrollView(
-                //   scrollDirection: Axis.horizontal,
-                //
-                //   child: onlyproduct.when(
-                //     data :(products) =>Row(
-                //     children: List.generate(
-                //         products.length,
-                //             (index){
-                //           final eCommerceItems = products[index];
-                //
-                //
-                //           return Padding(padding:
-                //           index == 0 ? EdgeInsets.symmetric(horizontal: 20):
-                //           EdgeInsets.only(right:20),
-                //             child: InkWell(
-                //               onTap:(){
-                //                 Future.delayed(Duration(milliseconds: 120),(){
-                //                   if(!mounted) return;
-                //                   Navigator.push(
-                //                     context,
-                //
-                //                     MaterialPageRoute(builder: (_)=>
-                //                         ItemsDetailScreen(
-                //                          title:eCommerceItems.title,
-                //                         ),
-                //                     ),
-                //                   );
-                //
-                //                 });
-                //
-                //
-                //
-                //               },
-                //               // child:CuratedItems(size:size) ,
-                //             ),
-                //
-                //
-                //           );
-                //         }),
-                //   ), error: (Object error, StackTrace stackTrace) {
-                //     Text("Error: $error");
-                //
-                //   }, loading: () {
-                //       Center(child: CircularProgressIndicator());
-                //
-                //   },
-                //   ),
-                //
-                //
-                //
-                // ),
-
 
 
 

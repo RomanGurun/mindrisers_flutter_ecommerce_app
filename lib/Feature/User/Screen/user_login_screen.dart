@@ -49,119 +49,123 @@ class _UserLoginScreen extends ConsumerState<UserLoginScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Container(
-            height: height / 2.3,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(color: shadowColor, blurRadius: 15, spreadRadius: 20),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: height / 2.3,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(color: shadowColor, blurRadius: 15, spreadRadius: 20),
+                ],
+              ),
+        
+              child: Image.asset("assets/advertise.jpg", fit: BoxFit.cover),
             ),
-
-            child: Image.asset("assets/advertise.jpg", fit: BoxFit.cover),
-          ),
-
-          SizedBox(height: 20),
-          Padding(
-            padding: EdgeInsets.all(15),
-            child: Column(
-              children: [
-                TextField(
-                  autocorrect: false,
-
-                  onChanged: (value) => formNotifier.updateEmail(value),
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email),
-
-                    labelText: "Enter your email",
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.all(15),
-                    errorText:formState.emailError,
-
-                  ),
-
-                ),
-
-                SizedBox(height: 15),
-                TextField(
-                  autocorrect: false,
-                  obscureText: formState.isPasswordHidden,
-
-                  keyboardType: TextInputType.visiblePassword,
-                  onChanged: (value) => formNotifier.updatePassword(value),
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-
-                      labelText: "Enter your password",
+        
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  TextField(
+                    autocorrect: false,
+        
+                    onChanged: (value) => formNotifier.updateEmail(value),
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.email),
+        
+                      labelText: "Enter your email",
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.all(15),
-                      errorText: formState.passwordError,
-                      suffixIcon: IconButton(
-                        onPressed: ()=> formNotifier.toggglePasswordVisibility(),
-                        icon:Icon(
-                          formState.isPasswordHidden
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-
-                        ),
-
-                      )
+                      errorText:formState.emailError,
+        
+                    ),
+        
                   ),
-                ),
-
-
-
-                SizedBox(height: 20,),
-        formState.isLoading
-                ? Center(child: CircularProgressIndicator())
-        :
-        MyButton(
-    onTab:
-formState.isFormValid ? login : null,
-    buttonText: "Login"
-
-    ),
-                SizedBox(height: 20,),
-                Row(
-                  children: [
-                    Expanded(child:
-                    Container(height: 1,
-                    color:Colors.black26,),),
-                    Text(" or "),
-                    Expanded(child:
-                    Container(height: 1,
-                    color: Colors.black26,),),
-
-                  ],
-                ),
-                Row(children: [
-                  Spacer(),
-
-                  Text("Don't have an account?"),
-GestureDetector(
-onTap: (){
-  NavigationHelper.push(context,SignUpScreen());
-},
-
-  child: Text(
-    "SignUp",
-    style: TextStyle(fontWeight: FontWeight.bold),
-  ),
-),
-
-
-                ],),
-
-
-
-              ],
+        
+                  SizedBox(height: 15),
+                  TextField(
+                    autocorrect: false,
+                    obscureText: formState.isPasswordHidden,
+        
+                    keyboardType: TextInputType.visiblePassword,
+                    onChanged: (value) => formNotifier.updatePassword(value),
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock),
+        
+                        labelText: "Enter your password",
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(15),
+                        errorText: formState.passwordError,
+                        suffixIcon: IconButton(
+                          onPressed: ()=> formNotifier.toggglePasswordVisibility(),
+                          icon:Icon(
+                            formState.isPasswordHidden
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+        
+                          ),
+        
+                        )
+                    ),
+                  ),
+        
+        
+        
+                  SizedBox(height: 20,),
+          formState.isLoading
+                  ? Center(child: CircularProgressIndicator())
+          :
+          MyButton(
+            onTab:
+        formState.isFormValid ? login : null,
+            buttonText: "Login"
+        
             ),
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Expanded(child:
+                      Container(height: 1,
+                      color:Colors.black26,),),
+                      Text(" or "),
+                      Expanded(child:
+                      Container(height: 1,
+                      color: Colors.black26,),),
+        
+                    ],
+                  ),
+                  Row(children: [
+                    Spacer(),
+        
+                    Text("Don't have an account?"),
+        GestureDetector(
+        onTap: (){
+          NavigationHelper.push(context,SignUpScreen());
+        },
+        
+          child: Text(
+            "SignUp",
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
-        ],
+        ),
+        
+        
+                  ],),
+        
+        
+        
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

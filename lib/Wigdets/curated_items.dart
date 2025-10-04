@@ -2,14 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Feature/CartProvider/favorite_provider.dart';
 import 'package:flutterecommerceapp/Views/Colors.dart';
 
 import '../Models/model.dart';
 import '../Models/products.dart';
 import '../Providers/category_providers.dart';
 import '../Views/items_detail_screen.dart';
-import '../Feature/CartProvider/favorite_provider.dart';
 class CuratedItems extends ConsumerStatefulWidget{
 
   // final String title;
@@ -30,7 +28,6 @@ class _CuratedScreenState extends ConsumerState<CuratedItems> {
 
   @override
   Widget build(BuildContext context) {
-    final Provider = ref.watch(favoriteProvider);
 
 
     final onlyproduct = ref.watch(onlyproductprovider);
@@ -96,48 +93,6 @@ class _CuratedScreenState extends ConsumerState<CuratedItems> {
 
                           height: widget.size.height *0.25,
                           width:  widget.size.width*0.5,
-                          child: Padding(padding: const EdgeInsets.all(12),
-
-                            child: Align(
-                                alignment: Alignment.topRight,
-                                child:CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: Colors.black26,
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      // here i have pass a product model instaed of a documentsnaphsot
-                                      // ecommerceItems
-
-                                      // ref.read(favoriteProvider).toggleFavorite(widget.product as DocumentSnapshot<Object?>);
-                                      final productData = {
-                                        "name": product.title,
-                                        "image": product.images.isNotEmpty
-                                            ? product.images[0]
-                                            : "https://placehold.co/300x300?text=No+Image",
-                                        "price": product.price,
-                                        "category": product.category,
-                                      };
-
-                                      ref.read(favoriteProvider).toggleFavoriteFromMap(
-                                        product.id.toString(),
-                                        productData,
-                                      );
-
-
-
-                                    },
-                                      child: Icon(
-                                        ref.watch(favoriteProvider).favorites.contains(product.id?.toString() ?? "")
-                                        ?
-                                       Icons.favorite : Icons.favorite_border,
-                                      color: Colors.white,
-                                    ),
-
-                                  ),
-                                )
-                            ),
-
-                          ),
 
                         ),
 
