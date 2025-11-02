@@ -64,7 +64,7 @@ class _UserLoginScreen extends ConsumerState<UserLoginScreen> {
                 ],
               ),
         
-              child: Image.asset("assets/advertise.jpg", fit: BoxFit.cover),
+              child: Image.asset("assets/Tipos de comércio electrónico_0.png", fit: BoxFit.cover),
             ),
         
             SizedBox(height: 20),

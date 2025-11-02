@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ✅ Display logged-in email
+            //  Display logged-in email
             Text(
               "Welcome, ${user?.email ?? "Guest"}",
               style: const TextStyle(
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // ✅ Navigate to Orders Screen
+            //  Navigate to Orders Screen
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -85,6 +85,8 @@ class HomeScreen extends StatelessWidget {
                     builder: (_) => const OrdersScreen(),
                   ),
                 );
+
+
               },
               child: const Text("My Orders"),
             ),
