@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutterecommerceapp/Feature/CartProvider/orders_screen.dart';
-import 'package:flutterecommerceapp/Feature/User/Screen/user_login_screen.dart';
+import 'package:flutterecommerceapp/Views/Feature/Cart/orders_screen.dart';
+import 'package:flutterecommerceapp/Views/Feature/User/Screen/user_login_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Feature/CartProvider/Model/cart_model.dart';
+// import 'package:flutterecommerceapp/Feature/Cart/CartModel/cart_model.dart';
+
+import 'package:flutterecommerceapp/Models/CartModel/cart_model.dart';
 import 'package:flutterecommerceapp/Views/category_items.dart';
 import 'package:iconsax/iconsax.dart';
-import 'cart_provider.dart';
+import '../../../ViewController/Providers/cart_provider.dart';
 import 'cart_screen.dart';
 
 

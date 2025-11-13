@@ -8,9 +8,9 @@
 //===============================NEW CART_ITEM.DART =======================
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Feature/CartProvider/Model/cart_model.dart';
-import 'package:flutterecommerceapp/Feature/CartProvider/cart_provider.dart';
-import 'package:flutterecommerceapp/Views/Colors.dart';
+import 'package:flutterecommerceapp/Models/CartModel/cart_model.dart';
+import 'package:flutterecommerceapp/ViewController/Providers/cart_provider.dart';
+import 'package:flutterecommerceapp/common/Colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class CartItems extends ConsumerWidget {

@@ -1,6 +1,5 @@
 import 'package:flutterecommerceapp/Models/category_products.dart';
 import 'package:flutterecommerceapp/Models/products.dart';
-import 'package:flutterecommerceapp/Models/users.dart';
 import 'package:dio/dio.dart';
 // final categories = (response.data as List)
 //     .map((e) => CategoryModel.fromMap(e))
@@ -70,19 +69,6 @@ class SellsRepository{
 
   }
 
-
-  static Future<List<UserModel>> getUser() async{
-    try{
-      final response = await dio.get("https://api.escuelajs.co/api/v1/users");
-      return (response.data as List)
-          .map((e)=> UserModel.fromJson(e)).toList();
-
-    }catch(err){
-      print(err);
-      throw "Something went wrong";
-
-    }
-  }
 
 
 

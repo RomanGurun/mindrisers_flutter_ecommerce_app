@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Views/Colors.dart';
+import 'package:flutterecommerceapp/common/Colors.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutterecommerceapp/Views/app_home_screen.dart';
 import 'package:flutterecommerceapp/Wigdets/banner.dart';

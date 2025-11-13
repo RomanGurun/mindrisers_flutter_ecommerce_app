@@ -4,7 +4,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:flutterecommerceapp/Feature/User/Model/auth_model.dart';
+import 'package:flutterecommerceapp/Models/UserModel/auth_model.dart';
 class AuthFormNotifer extends StateNotifier<AuthFormState>{
 
 AuthFormNotifer():super(AuthFormState());

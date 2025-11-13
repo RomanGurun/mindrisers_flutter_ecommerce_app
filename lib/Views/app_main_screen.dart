@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Feature/User/Screen/home_screen.dart';
+import 'Feature/User/Screen/home_screen.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutterecommerceapp/Views/app_home_screen.dart';
 
-import '../Feature/CartProvider/cart_order_count.dart';
-import '../Feature/CartProvider/cart_screen.dart';
+import 'Feature/Cart/cart_order_count.dart';
+import 'Feature/Cart/cart_screen.dart';
 
 class AppMainScreen extends ConsumerStatefulWidget{
 

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Feature/User/Screen/user_login_screen.dart';
-import 'package:flutterecommerceapp/Feature/User/Service/auth_provider.dart';
-import 'package:flutterecommerceapp/Feature/User/Service/auth_service.dart';
-import 'package:flutterecommerceapp/Feature/Widgets/my_button.dart';
+import 'user_login_screen.dart';
+import 'package:flutterecommerceapp/ViewController/Repository/Service/auth_provider.dart';
+import 'package:flutterecommerceapp/ViewController/Repository/Service/auth_service.dart';
+// import 'package:flutterecommerceapp/Widgets/my_button.dart';
+
+import 'package:flutterecommerceapp/Wigdets/my_button.dart';
 import 'package:flutterecommerceapp/Routes/app_routes.dart';
-import 'package:flutterecommerceapp/Views/Colors.dart';
+import 'package:flutterecommerceapp/common/Colors.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutterecommerceapp/Views/app_home_screen.dart';
 

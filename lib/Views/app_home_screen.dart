@@ -6,12 +6,11 @@ import 'package:flutterecommerceapp/Wigdets/curated_items.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutterecommerceapp/Wigdets/banner.dart';
 import 'package:riverpod/src/framework.dart';
-import '../Feature/CartProvider/cart_order_count.dart';
-import '../Models/category_model.dart';
+import 'Feature/Cart/cart_order_count.dart';
 import '../Models/model.dart';
 import 'package:flutterecommerceapp/Views/items_detail_screen.dart';
 // import 'package:/pages/widgets/category_item.dart';
-import 'package:flutterecommerceapp/Providers/category_providers.dart';
+import 'package:flutterecommerceapp/ViewController/Providers/category_providers.dart';
 import 'package:flutterecommerceapp/Models/products.dart';
 
 
@@ -144,11 +143,6 @@ class _AppMainScreenState extends ConsumerState<AppHomeScreen>{
                           // filter products based on the selected category
 
 
-                          final filterItems = fashionEcommerceApp
-                              .where((item) =>
-                          item.category.toLowerCase() ==
-                              category[index].name.toLowerCase())
-                              .toList();
 
                           //   Navigate to the categoryItems screen with
 

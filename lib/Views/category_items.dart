@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Models/category_model.dart';
-import 'package:flutterecommerceapp/Providers/category_providers.dart';
+import 'package:flutterecommerceapp/ViewController/Providers/category_providers.dart';
 import 'package:flutterecommerceapp/Views/items_detail_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../Models/category_model.dart';
 import '../Models/model.dart';
-import '../Models/sub_category.dart';
-import 'Colors.dart';
+import '../common/Colors.dart';
 
 class CategoryItems extends ConsumerStatefulWidget {
   // final AppModel eCommerceApp;

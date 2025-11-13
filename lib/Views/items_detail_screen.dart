@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Feature/CartProvider/cart_provider.dart';
-import 'package:flutterecommerceapp/Providers/category_providers.dart';
-import 'package:flutterecommerceapp/Views/Colors.dart';
+import 'package:flutterecommerceapp/ViewController/Providers/cart_provider.dart';
+import 'package:flutterecommerceapp/ViewController/Providers/category_providers.dart';
+import 'package:flutterecommerceapp/Common/Colors.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:riverpod/src/framework.dart';
-import '../Feature/CartProvider/cart_order_count.dart';
-import '../Feature/CartProvider/orders_screen.dart';
+import 'Feature/Cart/cart_order_count.dart';
+import 'Feature/Cart/orders_screen.dart';
 import '../Models/model.dart';
 
 class ItemsDetailScreen extends ConsumerStatefulWidget {

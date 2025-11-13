@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterecommerceapp/Views/Colors.dart';
+import 'package:flutterecommerceapp/common/Colors.dart';
 
 class MyButton extends ConsumerStatefulWidget {
   final VoidCallback? onTab;
